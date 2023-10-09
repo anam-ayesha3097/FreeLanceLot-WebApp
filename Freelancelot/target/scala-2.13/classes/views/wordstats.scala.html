@@ -1,0 +1,43 @@
+@(wordsHashMap: Map[String, Integer])
+@main("Global Word Stats"){
+    <html>
+<head>
+    <title>Global Word Stats</title>
+</head>
+<article>
+<body id="wordStatsPageBody">
+    <div id="main-div" class="container">
+
+        <div id="allProjectsDiv" class="projects-main-div">
+            @if(wordsHashMap.isEmpty) {
+                <div class="alert alert-warning" role="alert" id="userMsgDiv">
+                    No projects as of now
+                </div>
+            } else {
+                <div class="" id="tableContainerDiv" >
+
+                </div>
+                <table>
+                        <tr>
+                            <th style="font-weight: bold">Words</th>
+                            <th style="font-weight: bold">Frequency</th>
+                    <tr/>
+                    <tbody>
+                        <div>
+                        @for((word,count) <- wordsHashMap) {
+                            <tr>
+                                <td>@word</td>
+                                <td>@count</td>
+                            </tr>
+                        }
+                        </div>
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+
+</body>
+</article>
+    </html>
+}

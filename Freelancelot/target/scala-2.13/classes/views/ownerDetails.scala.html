@@ -1,0 +1,61 @@
+@(ownerDetail : models.OwnerInformation)
+@main("Owner Details"){
+    <html>
+        <head>
+            <style>
+                    p {text-align: center;}
+                    div {text-align: center;}
+            </style>
+            <title>Owner Details</title>
+        </head>
+        <article>
+            <body id="OwnerDetailsBody">
+                <div id="main-div" class="container">
+
+                    <div id="details" class="projects-main-div">
+
+                        <div class="" id="tableContainerDiv" >
+                            <p style="color:blue;"> <b>OWNER DETAILS</b> </p>
+                            <p style="color:green;"> <b>Owner Id : </b> @ownerDetail.getId() </p>
+                            <p style="color:green;"> <b>Username : </b> @ownerDetail.getUsername() </p>
+                            <p style="color:green;"> <b> Company : </b> @ownerDetail.getCompany() </p>
+                            <p style="color:green;"> <b> Role : </b> @ownerDetail.getRole() </p>
+                            <p style="color:green;"> <b> Primary Currency: </b> @ownerDetail.getPrimaryCurrency() </p>
+                            <p style="color:green;"> <b> Registration: </b> @ownerDetail.getRegistrationDate() </p>
+                            <p style="color:green;"> <b> Country: </b> @ownerDetail.getCountry() </p>
+                            <p style="color:green;"> <b> Limited Account: </b> @ownerDetail.getLimitedAccount() </p>
+                            <p style="color:green;"> <b> Email Verified: </b> @ownerDetail.getEmailVerified() </p>
+                        </div>
+
+                        <div>
+
+                            <p style="color:blue;" text-align: center;> <b> Below are the top 10 Projects for owner ID : @ownerDetail.getId() </b></p>
+                            <table>
+                                <tr>
+                                    <th style="font-weight: bold">Owner_id</th>
+                                    <th style="font-weight: bold">Date</th>
+                                    <th style="font-weight: bold">Title</th>
+                                    <th style="font-weight: bold">Type</th>
+                                    <th style="font-weight: bold">Skills</th>
+
+                                </tr>
+                                @for(result <- ownerDetail.getOwnerProjects_active().get(ownerDetail.getId()).getProjectList()) {
+                                    <tr>
+                                        <td><a href="@routes.HomeController.ownerInformation(result.getOwner_id())" target="_blank"> @result.getOwner_id </a> </td>
+                                        <td>@result.getDate()</td>
+                                        <td><a href="https://www.freelancer.com/projects/@result.getProject_ID/details">@result.getProject_title()</a></td>
+                                        <td>@result.getProject_type()</td>
+                                        <td><a href="@routes.HomeController.skills(result.getSkills())">@result.getSkills()</a></td>
+                                    </tr>
+                                }
+                            </table>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </body>
+        </article>
+    </html>
+}

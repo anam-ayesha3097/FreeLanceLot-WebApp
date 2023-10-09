@@ -1,0 +1,4 @@
+[debug] "not up to date. inChanged = true, force = false
+[debug] Updating ProjectRef(uri("file:/E:/SOEN-6441/Freelancelot%20Final%20Project/Freelancelot/Freelancelot/project/"), "freelancelot-build")...
+[debug] Done updating ProjectRef(uri("file:/E:/SOEN-6441/Freelancelot%20Final%20Project/Freelancelot/Freelancelot/project/"), "freelancelot-build")
+[warn] There may be incompatibilities among your library dependencies; run 'evicted' to see detailed eviction warnings.
