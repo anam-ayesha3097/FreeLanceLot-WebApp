@@ -1,0 +1,49 @@
+@import models.FreelaancelotList
+@(searchForm : Map[String,FreelaancelotList])
+@main("FreeLancelot"){
+    <article>
+        <head>
+            <h1 style= text-align:center;>Welcome to FreeLancelot</h1>
+        </head>
+        <center>
+            <body>
+                <form action ="/freelance" method="GET">
+                    <input type="text" name="searchTerm" placeholder="Enter Search Terms"/>
+                    <input type="submit" value="Go!" style="background-color: #1874CD;color: white">
+                </form>
+                <div>
+                @if(searchForm != null) {
+                    @for((searchterm,searchvalue) <- searchForm){
+                        <p style = "font-weight: bold" >Job Search : @searchterm  Flesh Reading Ease Index:  @searchvalue.getAvgReadability(searchterm)  FKLG: @searchvalue.getAvgEducationalLevel(searchterm) </p>
+                        <a href="@routes.HomeController.wordStats(searchterm)" >Global Stats</a>
+                        <table>
+                            <tr>
+                                <th style="font-weight: bold">Owner_id</th>
+                                <th style="font-weight: bold">Date</th>
+                                <th style="font-weight: bold">Title</th>
+                                <th style="font-weight: bold">Type</th>
+                                <th style="font-weight: bold">Skills</th>
+                                <th style="font-weight: bold">Stats</th>
+                                <th style="font-weight: bold">Readability</th>
+                                <th style="font-weight: bold">Education Level</th>
+                            </tr>
+                            @for(result <- searchvalue.getProjectList()) {
+                                <tr>
+                                    <td><a href="@routes.HomeController.ownerInformation(result.getOwner_id())" target="_blank"> @result.getOwner_id </a> </td>
+                                    <td>@result.getDate()</td>
+                                    <td><a href="https://www.freelancer.com/projects/@result.getProject_ID/details">@result.getProject_title()</a></td>
+                                    <td>@result.getProject_type()</td>
+                                    <td><a href="@routes.HomeController.skills(result.getSkills())">@result.getSkills()</a></td>
+                                    <td><a href="@routes.HomeController.projectWordStats(result.getProject_description())">Stats</a></td>
+                                    <td>@result.getReadability()</td>
+                                    <td>@result.getEducationalLevel()</td>
+                                </tr>
+                            }
+                        </table>
+                    }
+                }
+                </div>
+            </body>
+        </center>
+    </article>
+}

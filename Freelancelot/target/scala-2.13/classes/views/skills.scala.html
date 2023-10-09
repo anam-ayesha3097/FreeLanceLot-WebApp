@@ -1,0 +1,38 @@
+@import models.Freelancelot
+@import models.FreelaancelotList
+@(searchForm: Map[String,FreelaancelotList])
+    @main("skills"){
+    <article>
+        <head>
+            <h1 style= text-align:center;>Welcome to FreeLancelot</h1>
+        </head>
+        <center>
+            <body>
+                <div>
+                @if(searchForm != null) {
+                    @for((s,searchvalue) <- searchForm){
+                        <table>
+                            <tr>
+                                <td>Owner_id</td>
+                                <td>Date</td>
+                                <td>Title</td>
+                                <td>Type</td>
+                                <td>Skills</td>
+                            </tr>
+                            @for(result <- searchvalue.getProjectList()) {
+                                <tr>
+                                    <td>@result.getOwner_id()</td>
+                                    <td>@result.getDate()</td>
+                                    <td>@result.getProject_title()</td>
+                                    <td>@result.getProject_type()</td>
+                                    <td><a href="@routes.HomeController.skills(result.getSkills())">@result.getSkills()</a></td>
+                                </tr>
+                            }
+                        </table>
+                    }
+                }
+                </div>
+            </body>
+        </center>
+    </article>
+    }

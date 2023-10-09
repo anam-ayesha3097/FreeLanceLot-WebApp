@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Freelancelot" options="-encoding utf8 -g" />
+      <module name="play-java-hello-world-tutorial" options="-encoding utf8 -g" />
+    </option>
+  </component>
+</project>
